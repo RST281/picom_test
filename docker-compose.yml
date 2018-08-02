@@ -1,0 +1,13 @@
+version: '2'
+services:
+    app:
+        image: php:5.6-apache
+        volumes:
+            - '.:/var/www/html'
+            - '/etc/passwd:/etc/passwd'
+            - '/etc/group:/etc/group'
+        ports:
+            - '8888:80'
+        environment:
+            APACHE_RUN_USER: 'konstantin'
+            APACHE_RUN_GROUP: 'konstantin'

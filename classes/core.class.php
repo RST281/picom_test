@@ -95,11 +95,7 @@ class CORE{
         $file = fopen($this->usersFilePath, 'a+');
         flock($file, LOCK_EX);
         $this->users = unserialize(fread($file, filesize($this->usersFilePath)));
-        flock($file, LOCK_UN);
-
         unset($this->users[$this->uuid]);
-
-        flock($file, LOCK_EX);
         ftruncate($file, 0);
         fwrite($file, serialize($this->users));
         fflush($file);
